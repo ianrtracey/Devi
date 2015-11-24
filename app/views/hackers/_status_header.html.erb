@@ -1,0 +1,23 @@
+<% if hacker.status.status.nil? %>
+<div class="alert alert-info" role="alert">
+	This hacker still has not received a decision.
+</div>
+<% end %>
+
+<% if hacker.status.status == Decision::CONSTANTS['APPROVE'] %>
+<div class="alert alert-success" role="alert">
+	This hacker has been accepted <%= @hacker.status.decision_made_at.strftime("%m/%d/%Y") %> 
+</div>
+<% end %>
+
+<% if hacker.status.status == Decision::CONSTANTS['REJECT'] %>
+<div class="alert alert-danger" role="alert">
+	This hacker has been rejected <%= @hacker.status.decision_made_at.strftime("%m/%d/%Y") %>
+</div>
+<% end %>
+
+<% if hacker.status.status == Decision::CONSTANTS['WAITLIST'] %>
+<div class="alert alert-warning" role="alert">
+	This hacker has been waitlisted <%= @hacker.status.decision_made_at.strftime("%m/%d/%Y") %>
+</div>
+<% end %>

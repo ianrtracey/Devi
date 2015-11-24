@@ -1,0 +1,62 @@
+
+
+
+  <div class="field">
+  </div>
+
+
+
+
+
+
+<body class="flat-blue login-page">
+    <div class="container">
+        <div class="login-box">
+            <div>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="login-form row">
+                    <div class="col-sm-12 text-center login-header">
+                        <i class="login-logo fa fa-connectdevelop fa-5x"></i>
+                        <h4 class="login-title">Devi</h4>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="login-body">
+                            <div class="progress hidden" id="login-progress">
+                                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    Log In...
+                                </div>
+                            </div>
+                            <form>
+                                <div class="control">
+                                    <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "email@here.com" %>
+                                </div>
+                                <div class="control">
+                                    <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "****" %>
+                                </div>
+                                  <% if devise_mapping.rememberable? -%>
+                                    <div class="field">
+                                    <%= f.check_box :remember_me %>
+                                    <%= f.label :remember_me %>
+                                    </div>
+                                <% end -%>
+                                <div class="login-button text-center">
+                                    <%= f.submit "Log in", class: "btn btn-primary" %>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="login-footer">
+                            <span class="text-right"><a href="#" class="color-white"><%= render "devise/shared/links" %></a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% end %>
+
+ 
+
+    
+

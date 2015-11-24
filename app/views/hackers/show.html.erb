@@ -1,0 +1,151 @@
+<div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">Hacker Profile</span>
+        <table border="0">
+            <tr>
+                <td style="padding: 4px"><%= button_to "Approve", {action: "approve",  remote: true}, {class: 'btn btn-success', style: "display: inline-block"} %></td>
+                <td style="padding: 4px"><%= button_to "Waitlist", {action: "waitlist",  remote: true}, {class: 'btn btn-warning', style: "display: inline-block"} %></td>
+                <td style="padding: 4px"><%= button_to "Reject", {action: "reject",  remote: true}, {class: 'btn btn-danger', style: "display: inline-block"} %></td>
+            </tr>
+        </table>				
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <%= render partial: "status_header", locals: {hacker: @hacker} %>
+
+                            <div class="card">
+                                <div class="card-header">
+
+                                    <div class="card-title">
+                                    	<div class="title"><%= "#{@hacker.first_name} #{@hacker.last_name}"%>
+                                    	</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <div class="title">
+                                                    <small>Demographics</small>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="card-body">
+                                            <table>
+                                                <tr><td><strong>Name: </strong><%= "#{@hacker.first_name} #{@hacker.last_name}" %></td></tr>
+                                                <tr><td><strong>Email: </strong><%= "#{@hacker.email}" %></td></tr>
+                                                <tr><td><strong>Gender: </strong><%= "#{@hacker.gender}" %></td></tr>
+                                                <tr><td><strong>is over 18?: </strong><%= "#{@hacker.is_over_18}" %></td></tr>
+                                                <tr><td><strong>School: </strong>
+                                                <%= "#{@hacker.school} -- #{@hacker.graduation_date}" %></td></tr>
+                                                <tr><td><strong>View Emergency Contact</strong></td></tr>
+                                            </table>
+                                                
+                                                
+                                            </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <div class="title">
+                                                    <small>Information</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                        <p><strong>Interested In: </strong><%= @hacker.learn.join(", ") %></p>
+                                        <p><strong>Experience: </strong> <%= @hacker.experience.join(", ") %></p>
+                                        <p><%=%></p>
+                                        <table border="0">
+                                            <tr>
+<% if !@hacker.github != "http://" %>
+    <td style="padding-right: 15px"><a href=<%= "#{@hacker.github}"%>><i class="fa fa-github fa-3x"></i></a></td>
+<% end %>
+<% if @hacker.linkedin != "http://" %>
+    <td style="padding-right: 15px"><a href=<%= "#{@hacker.linkedin}"%>><i class="fa fa-linkedin fa-3x"></i></a></td>
+<% end %>
+<% if !@hacker.resume != "http://" %>
+    <td style="padding-right: 15px"><a href=<%= "#{@hacker.resume}"%>><i class="fa fa-file fa-3x"></i></a></td>
+<% end %>
+                                            </tr>
+                                        </table>
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                </div>
+
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <div class="title">Languages</div>
+                                    </div>
+                                </div>
+                                <div class="card-body no-padding">
+                                    <canvas id="radar-chart" class="chart"></canvas>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<script>
+  $(function() {
+    var ctx, data, myBarChart, option_bars;
+    Chart.defaults.global.responsive = true;
+    ctx = $('#radar-chart').get(0).getContext('2d');
+    option_bars = {
+      scaleBeginAtZero: true,
+      scaleShowGridLines: true,
+      scaleGridLineColor: "rgba(0,0,0,.05)",
+      scaleGridLineWidth: 1,
+      scaleShowHorizontalLines: true,
+      scaleShowVerticalLines: false,
+      barShowStroke: false,
+      barStrokeWidth: 0,
+      barValueSpacing: 5,
+      barDatasetSpacing: 1,
+    };
+    data = {
+      labels: ['Java', 'Ruby', 'Obj-C', 'C', 'C++', 'Javascript', 'Python'],
+      datasets: [
+        {
+          label: "My First dataset",
+          fillColor: "rgba(26, 188, 156,0.2)",
+          strokeColor: "#1ABC9C",
+          pointColor: "#1ABC9C",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "#1ABC9C",
+          data: [65, 59, 80, 81, 56, 55, 40]
+        }, {
+          label: "My Second dataset",
+          fillColor: "rgba(34, 167, 240,0.2)",
+          strokeColor: "#22A7F0",
+          pointColor: "#22A7F0",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "#22A7F0",
+          data: [28, 48, 40, 19, 86, 27, 90]
+        }
+      ]
+    };
+    myBarChart = new Chart(ctx).Radar(data, option_bars);
+  });
+
+</script>

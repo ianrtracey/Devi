@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Devi</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+<% if !current_user.nil? %>
+<body class="flat-blue">
+    <div class="app-container">
+        <div class="row content-container">
+            <%= render partial: "layouts/navigation" %>
+            <%= render partial: "layouts/side_menu" %> 
+<% end %>
+<%= yield %>
+		</div>
+	</div>
+			<%= render partial: "layouts/scripts" %>
+</body>
+
+</body>
+</html>
